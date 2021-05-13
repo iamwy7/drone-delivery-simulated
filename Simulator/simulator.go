@@ -46,7 +46,7 @@ func main() {
 	}
 }
 
-// start gera uma nova routine para cada Order.
+// start gera uma nova routine para processar cada Order.
 func start(order entity.Order, ch *amqp.Channel) {
 
 	if !stringInSlice(order.Uuid, active) {

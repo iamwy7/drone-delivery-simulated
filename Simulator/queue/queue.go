@@ -2,9 +2,10 @@ package queue
 
 import (
 	"fmt"
-	"github.com/streadway/amqp"
 	"log"
 	"os"
+
+	"github.com/streadway/amqp"
 )
 
 // Connect cria a conexão com o RabbitMQ, retornando um channel.
@@ -58,9 +59,9 @@ func Notify(payload string, ch *amqp.Channel) {
 
 	err := ch.Publish(
 		os.Getenv("RABBITMQ_DESTINATION_POSITIONS_EX"), // exchange
-		os.Getenv("RABBITMQ_DESTINATION_ROUTING_KEY"),                 // routing key
-		false,                             // mandatory
-		false,                             // immediate
+		os.Getenv("RABBITMQ_DESTINATION_ROUTING_KEY"),  // routing key
+		false, // mandatory
+		false, // immediate
 		amqp.Publishing{
 			ContentType: "application/json",
 			Body:        []byte(payload),

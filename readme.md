@@ -1,3 +1,3 @@
 ### Direct Delivery
 
-Projeto de Desenvolvimento de aplicações multipltaforma.
+Projeto de Desenvolvimento de aplicações multiplataforma.

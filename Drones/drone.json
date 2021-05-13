@@ -1,12 +1,24 @@
 {
-  "drivers": [
+  "drones": [
     {
       "uuid": "45688cd6-7a27-4a7b-89c5-a9b604eefe2f",
-      "name": "Wesley W"
+      "name": "Cargo Drone 1"
     },
     {
       "uuid": "9a118e4d-821a-44c7-accc-fa99ac4be01a",
-      "name": "Luiz"
+      "name": "Cargo Drone 2"
+    },
+    {
+      "uuid": "c2fc9a9e-e4b5-4fef-b961-b4e0e9d6b697",
+      "name": "Cargo Drone 3"
+    },
+    {
+      "uuid": "41cbf76c-2e37-4e89-be60-19c6e2cab391",
+      "name": "Cargo Drone 4"
+    },
+    {
+      "uuid": "2550a881-b233-453f-8622-24b9dd440d6f",
+      "name": "Cargo Drone 5"
     }
   ]
 }
