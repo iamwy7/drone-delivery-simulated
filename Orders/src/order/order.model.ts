@@ -6,7 +6,8 @@ import {
 
 export enum OrderStatus {
     PENDING = 1,
-    DONE = 2
+    DONE = 2,
+    CANCELED = 3
 }
 
 @Entity({name: 'orders'})
@@ -15,10 +16,10 @@ export class Order {
     id: string;
 
     @Column()
-    driver_id: string;
+    drone_id: string;
 
     @Column()
-    driver_name: string;
+    drone_name: string;
 
     @Column()
     location_id: number; //arquivo que o simulador irá ler.

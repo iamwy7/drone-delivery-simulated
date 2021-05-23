@@ -2,7 +2,7 @@ import {Controller, Get, Post, Redirect, Render, Req, Request} from '@nestjs/com
 import {Order} from "./order.model";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
-import {DriverHttpService} from "./driver-http/driver-http.service";
+import {DroneService} from "./drone-service/drone.service";
 
 @Controller('orders') // '/orders'
 export class OrderController {
@@ -10,7 +10,7 @@ export class OrderController {
     constructor(
         @InjectRepository(Order)
         private readonly orderRepo: Repository<Order>, // do TypeORM.
-        private readonly driverHttp: DriverHttpService
+        private readonly droneHttp: DroneService
     ) {
 
     }
@@ -29,19 +29,19 @@ export class OrderController {
     @Get('/create')
     @Render('order/create')
     async create() {
-        const drivers = await this.driverHttp.list().toPromise();
-        return {drivers}
+        const drones = await this.droneHttp.list().toPromise();
+        return {drones}
     }
 
     @Post()
     @Redirect('orders')
     async store(@Req() request: Request) {
         const [location_id, location_geo] = request.body['location'].split('/');
-        const [driver_id, driver_name] = request.body['driver'].split(',');
+        const [drone_id, drone_name] = request.body['drone'].split(',');
         // Só cria a instância.
         const order = this.orderRepo.create({
-            driver_id,
-            driver_name,
+            drone_id,
+            drone_name,
             location_id,
             location_geo: location_geo.split(',') // Gera o nosso [latitude,longitude]
         });

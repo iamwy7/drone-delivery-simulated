@@ -3,7 +3,7 @@ import {ConsoleModule} from "nestjs-console";
 import { FixturesService } from './fixtures/fixtures.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Order} from "../order/order.model";
-import {DriverHttpService} from "../order/driver-http/driver-http.service";
+import {DroneService} from "../order/drone-service/drone.service";
 
 @Module({
     imports: [
@@ -11,7 +11,9 @@ import {DriverHttpService} from "../order/driver-http/driver-http.service";
         TypeOrmModule.forFeature([ Order]),
         HttpModule
     ],
-    providers: [FixturesService, DriverHttpService]
+    providers: [FixturesService, DroneService]
 })
+
+// Esse módulo, é o de fixtures.
 export class CommandsModule {}
 

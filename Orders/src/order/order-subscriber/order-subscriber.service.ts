@@ -32,7 +32,7 @@ export class OrderSubscriberService implements EntitySubscriberInterface<Order> 
             'orders.new',
             {
                 id: order.id,
-                driver_name: order.driver_name,
+                drone_name: order.drone_name,
                 location_id: order.location_id,
                 location_geo: order.location_geo,
 

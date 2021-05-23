@@ -3,14 +3,14 @@ import {ConsoleService} from "nestjs-console";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {Order} from "../../order/order.model";
-import {DriverHttpService} from "../../order/driver-http/driver-http.service";
+import {DroneService} from "../../order/drone-service/drone.service";
 
 @Injectable()
 export class FixturesService {
     constructor(
         private readonly consoleService: ConsoleService,
         @InjectRepository(Order) private readonly orderRepo: Repository<Order>,
-        private readonly driverHttp: DriverHttpService
+        private readonly droneHttp: DroneService
     ) {
         const cli = this.consoleService.getCli();
 
@@ -25,11 +25,11 @@ export class FixturesService {
     }
 
     seed = async (): Promise<any> => {
-        const drivers = await this.driverHttp.list().toPromise();
-        for(const driver of drivers){
+        const drones = await this.droneHttp.list().toPromise();
+        for(const drone of drones){
             const order = this.orderRepo.create({
-                driver_id: driver.uuid,
-                driver_name: driver.name,
+                drone_id: drone.uuid,
+                drone_name: drone.name,
                 location_id: 1,
                 location_geo: [-81.24653,28.3645],
             });

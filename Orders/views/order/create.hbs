@@ -1,25 +1,27 @@
 <script type="text/babel">
     function Page() {
-        const [driver, setDriver] = React.useState("");
+        const [drone, setDrone] = React.useState("");
         const [location, setLocation] = React.useState("");
         return (
                 <React.Fragment>
-                    <MUI.Typography variant="h4">Aprovar Entrega</MUI.Typography>
+                    <MUI.Box pt={2}>
+                        <MUI.Typography variant="h4">Aprovar Nova Entrega</MUI.Typography>
+                    </MUI.Box>
                     <form action="/orders" method="post">
                         <MUI.TextField // Não é select nativo, mas sim, escondido.
                                 select
-                                name="driver"
-                                label="Motorista"
+                                name="drone"
+                                label="Drone"
                                 margin="normal"
                                 variant="outlined"
                                 fullWidth
-                                value={driver}
-                                onChange={(event) => setDriver(event.target.value)}
+                                value={drone}
+                                onChange={(event) => setDrone(event.target.value)}
                         >
                             <MUI.MenuItem value="" disabled>
                                 <em>Selecione o drone</em>
                             </MUI.MenuItem>
-                            {{#forEach drivers}}
+                            {{#forEach drones}}
                                 <MUI.MenuItem value="{{uuid}},{{name}}">{{name}}</MUI.MenuItem>
                             {{/forEach}}
                         </MUI.TextField>
@@ -37,7 +39,11 @@
                             <MUI.MenuItem value="" disabled>
                                 <em>Selecione a localização</em>
                             </MUI.MenuItem>
-                            <MUI.MenuItem value="1/28.3645,-81.24653">Orlando</MUI.MenuItem>
+                            {{!-- <MUI.MenuItem value="1/28.3645,-81.24653">Orlando Teste</MUI.MenuItem> --}}
+                            <MUI.MenuItem value="2/-23.65384,-46.71144">Shopping Boa Vista R. Borba Gato, 59 | CEP: 04747-030 -> Uninove R. Amador Bueno, 307-491 | CEP: 04752-005</MUI.MenuItem>
+                            <MUI.MenuItem value="3/-23.65384,-46.71144">Habbibs Av. Vítor Manzini, 450 | CEP: 04745-060 -> Uninove R. Amador Bueno, 307-491 | CEP: 04752-005</MUI.MenuItem>
+                            <MUI.MenuItem value="4/-23.65384,-46.71144">Construção Camargo Correia Av. Miguel Yunes, 1000 | CEP: 04444-000 -> Uninove R. Amador Bueno, 307-491 | CEP: 04752-005</MUI.MenuItem>
+                            <MUI.MenuItem value="5/-23.65384,-46.71144">Correios R. Tenente Coronel Carlos da Silva Araújo, 333 | CEP: 04751-050 -> Uninove R. Amador Bueno, 307-491 | CEP: 04752-005</MUI.MenuItem>   
                         </MUI.TextField>
                         <MUI.Button type="submit" variant="contained" color="primary">Enviar</MUI.Button>
                     </form>

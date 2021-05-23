@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DriverHttpService } from './driver-http.service';
+import { DroneService } from './drone.service';
 
-describe('DriverHttpService', () => {
-  let service: DriverHttpService;
+describe('If DroneService works', () => {
+  let service: DroneService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DriverHttpService],
+      providers: [DroneService],
     }).compile();
 
-    service = module.get<DriverHttpService>(DriverHttpService);
+    service = module.get<DroneService>(DroneService);
   });
 
   it('should be defined', () => {

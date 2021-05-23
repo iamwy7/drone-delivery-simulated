@@ -13,7 +13,9 @@
 
         return (
                 <MUI.Container>
-                    <MUI.Typography variant={"h4"}>Listagem de pedidos</MUI.Typography>
+                    <MUI.Box pt={2}>
+                        <MUI.Typography variant={"h4"}>Listagem de pedidos</MUI.Typography>
+                    </MUI.Box>
                     <MUI.Box dir={'rtl'} paddingBottom={2}>
                         <MUI.Button
                                 title="Adicionar novo pedido"
@@ -40,10 +42,16 @@
                             {{#forEach data}}
                                 <MUI.TableRow>
                                     <MUI.TableCell>{{id}}</MUI.TableCell>
-                                    <MUI.TableCell>{{driver_name}}</MUI.TableCell>
+                                    <MUI.TableCell>{{drone_name}}</MUI.TableCell>
                                     <MUI.TableCell>Destino {{location_id}}</MUI.TableCell>
                                     <MUI.TableCell>{labelStatus({{status}})}</MUI.TableCell>
                                     <MUI.TableCell>
+                                        <a
+                                           href="{{MICRO_MAPPING_URL}}/orders/{{id}}/mapping"
+                                           target="_blank"
+                                        >
+                                            Cancelar
+                                        </a>
                                         <a
                                            href="{{MICRO_MAPPING_URL}}/orders/{{id}}/mapping"
                                            target="_blank"
