@@ -16,7 +16,7 @@ export class Order {
     id: string;
 
     @Column()
-    driver_name: string;
+    drone_name: string;
 
     @Column()
     location_id: number;

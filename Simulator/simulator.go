@@ -73,7 +73,7 @@ func SimulatorWorker(order entity.Order, ch *amqp.Channel) {
 
 	for scanner.Scan() {
 		data := strings.Split(scanner.Text(), ",")
-		json := destinationToJson(order, data[0], data[1])
+		json := destinationToJson(order, data[1], data[0])
 
 		// Vamos mandar para a fila a cada segundo.
 		time.Sleep(1 * time.Second)

@@ -23,7 +23,7 @@ export class NewOrderService {
     public async rpcHandler(message) {
         const order = this.orderRepo.create({
             id: message.id,
-            driver_name: message.driver_name,
+            drone_name: message.drone_name,
             location_id: message.location_id,
             location_geo: message.location_geo,
         });

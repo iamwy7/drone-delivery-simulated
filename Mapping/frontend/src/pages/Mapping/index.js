@@ -11,6 +11,7 @@ import MapControl from "./MapControl";
 import OrderInformation from "./OrderInformation";
 import {useSnackbar} from "notistack";
 
+// Pré configuramos a JS API Key.
 const loader = new Loader(process.env.REACT_APP_GOOGLE_API_KEY);
 const socket = io(process.env.REACT_APP_MICRO_MAPPING_URL);
 
@@ -34,6 +35,7 @@ const Mapping = () => {
 
             setOrder(data);
 
+            console.log(data);
             const [lat, lng] = data.location_geo;
             const position = {lat: parseFloat(lat), lng: parseFloat(lng)};
 
@@ -49,7 +51,7 @@ const Mapping = () => {
             // Colocamos o marcador de inicio.
             const start = new window.google.maps.Marker({
                 title: 'Início',
-                icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png'
+                icon: process.env.PUBLIC_URL + '/droneMarker.png'
             });
 
             // Colocamos o marcador de ponto final.

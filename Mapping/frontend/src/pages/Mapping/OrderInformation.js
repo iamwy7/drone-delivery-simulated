@@ -15,15 +15,15 @@ const OrderInformation = (props) => {
                 return 'Pedido Entregue';
         }
     }
-
+ 
     return (
         <Card>
             <List>
                 <ListItem>
                     <ListItemAvatar>
-                        <Avatar src={'https://avatars2.githubusercontent.com/u/4926329?s=460&v=4'}/>
+                        <Avatar src={process.env.PUBLIC_URL + '/drone.png'} />
                     </ListItemAvatar>
-                    <ListItemText primary={order.driver_name} secondary={labelStatus(order.status)} />
+                    <ListItemText primary={order.drone_name} secondary={labelStatus(order.status)} />
                 </ListItem>
                 <ListItem>
                     <ListItemText secondary={`Local de entrega: Destino ${order.location_id}`} />
