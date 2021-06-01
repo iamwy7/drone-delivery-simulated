@@ -4,4 +4,6 @@ npm-debug.log
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
 .env
+k8s
+.vscode
 cloudbuild.*

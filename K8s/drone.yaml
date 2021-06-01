@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drones
+spec:
+  selector:
+    matchLabels:
+      app: drones
+
+  template:
+    metadata:
+      labels:
+        app: drones
+    spec:
+      containers:
+        - name: drones
+          image: wy7images/dd-drones:latest
+          ports:
+            - containerPort: 8081
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: drones-service
+  labels:
+    app: drones-service
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+  selector:
+    app: drones

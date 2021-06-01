@@ -6,5 +6,5 @@ RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -tags netgo -ldflags="-s -
 
 FROM scratch as runner
 WORKDIR /go/src/
-COPY --from=builder /go/src/simulator .
+COPY --from=builder /go/src .
 CMD ["./simulator"]

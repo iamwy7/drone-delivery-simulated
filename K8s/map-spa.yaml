@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: map-spa
+spec:
+  selector:
+    matchLabels:
+      app: map-spa
+
+  template:
+    metadata:
+      labels:
+        app: map-spa
+    spec:
+      containers:
+        - name: map-spa
+          image: wy7images/dd-map-spa
+          env:
+          - name: REACT_APP_MICRO_MAPPING_URL
+            value: http://map-service:3001
+          - name: REACT_APP_GOOGLE_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: google-maps
+                key: google-key
+          ports:
+            - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: map-spa-service
+  labels:
+    app: map-spa-service
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+  selector:
+    app: map-spa
