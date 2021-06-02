@@ -8,15 +8,12 @@ data:
   env: |
     APP_ENV=prod
     APP_PORT=3003
-    MICRO_DRIVERS_URL=http://192.168.99.111:32125
-    MICRO_MAPPING_URL=http://map.project.maratona.fullcycle.com.br
+    MICRO_DRONES_URL=http://drones-service:8081
+    MICRO_MAPPING_URL=http://localhost:3000
     RABBITMQ_HOST=rabbitmq-service
-    RABBITMQ_USER=admin
-    RABBITMQ_PASSWORD=admin
+    RABBITMQ_USER=rabbitmq
     MYSQL_HOST=order-mysql-service
     MYSQL_USER=root
-    MYSQL_PASSWORD=root
-
 ---
 
 apiVersion: apps/v1
@@ -35,9 +32,20 @@ spec:
     spec:
       containers:
         - name: order
-          image: wesleywillians/maratona-orders
+          image: wy7images/dd-orders
           ports:
             - containerPort: 3003
+          env:
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: rabbitmq-pass
           envFrom:
             - configMapRef:
                 name: order-conf

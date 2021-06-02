@@ -17,7 +17,7 @@ spec:
           image: wy7images/dd-map-spa
           env:
           - name: REACT_APP_MICRO_MAPPING_URL
-            value: http://map-service:3001
+            value: http://localhost:3004
           - name: REACT_APP_GOOGLE_API_KEY
             valueFrom:
               secretKeyRef:

@@ -7,13 +7,11 @@ metadata:
 data:
   env: |
     APP_ENV=prod
-    APP_PORT=3000
+    APP_PORT=3004
     RABBITMQ_HOST=rabbitmq-service
-    RABBITMQ_USER=admin
-    RABBITMQ_PASSWORD=admin
+    RABBITMQ_USER=rabbitmq
     MYSQL_HOST=map-mysql-service
     MYSQL_USER=root
-    MYSQL_PASSWORD=root
 
 ---
 
@@ -33,9 +31,20 @@ spec:
     spec:
       containers:
         - name: map
-          image: wesleywillians/maratona-map
+          image: wy7images/dd-map
           ports:
-            - containerPort: 3000
+            - containerPort: 3004
+          env:
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: rabbitmq-pass            
           envFrom:
             - configMapRef:
                 name: map-conf
@@ -65,6 +74,6 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 3000
+      port: 3004
   selector:
     app: map

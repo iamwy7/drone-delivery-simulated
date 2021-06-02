@@ -1,3 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: order-mysql-initdb-config
+data:
+  initdb.sql: |
+    CREATE DATABASE IF NOT EXISTS micro_orders;
+    CREATE TABLE IF NOT EXISTS `micro_orders`.`orders` (
+      `id` VARCHAR(255) NOT NULL,
+      `drone_id` VARCHAR(255) NOT NULL,
+      `drone_name` VARCHAR(255) NOT NULL,
+      `location_id` SMALLINT NOT NULL,
+      `location_geo` VARCHAR(255) NOT NULL,
+      `status` SMALLINT NOT NULL,
+      `created_at` TIMESTAMP NOT NULL,
+      PRIMARY KEY (`id`)
+    )
+
+---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
@@ -33,10 +52,15 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        - name: order-mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: order-mysql-pv-claim
+      - name: order-mysql-initdb
+        configMap:
+          name: order-mysql-initdb-config
 
 ---
     

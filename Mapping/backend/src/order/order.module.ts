@@ -8,8 +8,11 @@ import { MappingService } from './mapping/mapping.service';
 
 @Module({
     imports: [
-        RabbitMQModule.forRoot(RabbitMQModule, {
-            uri: 'amqp://rabbitmq:rabbitmq@rabbit:5672',
+        RabbitMQModule.forRootAsync(RabbitMQModule, {
+            useFactory: () => {
+                return {uri: `amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:5672`}
+
+            },
         }),
         TypeOrmModule.forFeature([Order])
     ],

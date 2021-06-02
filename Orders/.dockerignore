@@ -5,3 +5,11 @@ npm-debug.log
 *.tsbuildinfo
 .env
 cloudbuild.*
+k8s
+.devcontainer
+.docker
+Docker*
+docker*
+.dockerignore
+.gitignore
+README.md
